@@ -3,19 +3,17 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Andy's Blog
-subtitle: 记录生活中的点点滴滴
-description: 溪流的秀美是因为它脚下的路坎坷不平
+title: Hexo
+subtitle: ''
+description: ''
 keywords:
-author: Andy
-language: 
-  - zh-CN
-  - en
+author: John Doe
+language: en
 timezone: ''
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: https://maybeYo.github.io.git
+url: http://example.com
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
@@ -42,13 +40,9 @@ external_link:
   exclude: ''
 filename_case: 0
 render_drafts: false
-post_asset_folder: true
-marked:
-  prependRoot: true
-  postAsset: true
+post_asset_folder: false
 relative_link: false
 future: true
-# syntax_highlighter: highlight.js
 syntax_highlighter: highlight.js
 highlight:
   line_number: true
@@ -102,14 +96,9 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-# theme: landscape
-theme: next
+theme: landscape
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
-  type: git 
-  repo: 
-    github: https://maybeYo.github.io.git
-    gitee: https://gitee.com/maybeyo/maybeyo.git
-  branch: main
+  type: ''
