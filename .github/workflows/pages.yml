@@ -35,7 +35,7 @@ jobs:
         run: npm install
 
       - name: Build
-        run: npm run build -- --config custom.yml _config.next.yml
+        run: npm run build -- --config _config-custom-hexo.yml,_config.next.yml 
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
