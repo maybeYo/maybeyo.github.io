@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://maybeyo.github.io/sitemap.xml
