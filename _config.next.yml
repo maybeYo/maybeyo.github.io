@@ -910,9 +910,9 @@ css: css
 js: js
 images: images
 
-# sitemap:
-#   path: 
-#     - sitemap.xml
+sitemap:
+  path: 
+    - sitemap.xml
 #     - sitemap.txt
 #   template: ./sitemap_template.xml
 #   template_txt: ./sitemap_template.txt
