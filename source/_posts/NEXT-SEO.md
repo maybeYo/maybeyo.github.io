@@ -1,5 +1,5 @@
 ---
-title: NEXT-SEO
+title: HEXO-NEXT Github Pages 收录
 date: 2021-07-16 17:18:18
 tags: 
   - NEXT
@@ -11,11 +11,11 @@ NEXT-SEO
 
 <!--more-->
 
-
-
-参考链接：[百度链接：jingyan.baidu.com](https://jingyan.baidu.com/article/a3761b2bf716631576f9aa3a.html)
-
-参考链接：[博客链接：www.himmy.cn](https://www.himmy.cn/2019/07/06/hexo%E5%8D%9A%E5%AE%A2%E7%99%BE%E5%BA%A6%E6%94%B6%E5%BD%95/)
+参考链接：
+  [百度链接：jingyan.baidu.com](https://jingyan.baidu.com/article/a3761b2bf716631576f9aa3a.html)
+  [博客链接：www.himmy.cn](https://www.himmy.cn/2019/07/06/hexo%E5%8D%9A%E5%AE%A2%E7%99%BE%E5%BA%A6%E6%94%B6%E5%BD%95/)
+  [CSDN链接](https://blog.csdn.net/linchaolong/article/details/148014233)
+  [知乎链接](https://zhuanlan.zhihu.com/p/464341936)
 
 ### 链接提交给百度
 
