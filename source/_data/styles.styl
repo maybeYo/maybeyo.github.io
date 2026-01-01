@@ -1,14 +1,16 @@
+/* 在移动设备上隐藏侧边栏 */
 +tablet-mobile() {
   .sidebar-toggle, .sidebar {
     display: none;
   }
 }
 
+/* 在存档页面中隐藏"继续发帖" */
 .archive .collection-title {
   display: none !important;
 }
 
-// 添加背景图片
+/* 添加背景图片 */
 body {
       background: url(/images/background.jpg
       );//自己喜欢的图片地址
@@ -18,26 +20,23 @@ body {
       background-position: 50% 50%;
 }
 
-
-
-// 标题栏背景
-//首页banner渐变色
+/* 首页banner渐变色 */
 .site-brand-container {
     background: linear-gradient(200deg, #f58220, #f58220 );
 }
 
-// 修改主体透明度
+/* 修改主体透明度 */
 .main-inner{
     background: #fff;
     opacity: 0.85;
 }
 
-// 修改菜单栏透明度，会引起本地搜索菜单bug
-//.header-inner {
-//    opacity: 0.95;
-//}
+/* 修改菜单栏透明度，会引起本地搜索菜单bug */
+/* .header-inner {
+    opacity: 0.95;
+} */
 
-// 主页文章添加阴影效果
+/* 主页文章添加阴影效果 */
 //.post {
 //   margin-top: 60px;
 //   margin-bottom: 60px;

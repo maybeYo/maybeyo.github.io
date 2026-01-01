@@ -9,11 +9,10 @@ categories:
 NEXT 配置修改
 <!--more-->
 参考地址
-http://theme-next.iissnan.com/theme-settings.html#rss
+[Next主题官方文档](http://theme-next.iissnan.com/theme-settings.html#rss)
+[Next主题官方文档](https://hexo-next.readthedocs.io/zh-cn/latest/)
 
-
-
-# 1.Next主题风格
+## 1.Next主题风格
 
 Next提供了四中主题风格scheme，可以在主题配置文件_config.yml文件中进行选择
 
@@ -29,13 +28,11 @@ Next提供了四中主题风格scheme，可以在主题配置文件_config.yml�
 scheme: Gemini
 ```
 
+## 2.设置菜单栏
 
+### 取消菜单栏注释
 
-# 2.设置菜单栏
-
-## 取消菜单栏注释
-
-```shell
+```yaml
 menu:
   home: / || fa fa-home
   about: /about/ || fa fa-user
@@ -43,21 +40,17 @@ menu:
   categories: /categories/ || fa fa-th
   archives: /archives/ || fa fa-archive
   #schedule: /schedule/ || fa fa-calendar
-  #sitemap: /sitemap.xml || fa fa-sitemap
+  sitemap: /sitemap.xml || fa fa-sitemap
   #commonweal: /404/ || fa fa-heartbeat
 
 ```
 
-
-
 **在终端窗口下，定位到 Hexo 站点目录下。使用 hexo new page 新建一个页面，命名为 tags ：**
 
 ```shell
-cd \hexoblog\maybe
+hexo new page about
 hexo new page tags
 ```
-
-
 
 **编辑刚新建的页面，将页面的类型设置为 tags ，主题将自动为这个页面显示标签云。页面内容如下：**
 
@@ -68,8 +61,6 @@ date: 2021-06-19 14:42:32
 type: "tags"
 ---
 ```
-
-
 
 ****注意：**如果有集成评论服务，页面也会带有评论。 若需要关闭的话，请添加字段 `comments` 并将值设置为 `false`，如：**
 
@@ -82,29 +73,21 @@ comments: false
 ---
 ```
 
-
-
-# 3.头像修改
+## 3.头像修改
 
 ```shell
 avatar:
   url: /images/avatar.png
 ```
 
-
-
-# 4.动态背景
+## 4.动态背景
 
 ```shell
 canvas_ribbon:
   enable: true
 ```
 
-
-
-# 5.添加顶部加载条
-
-
+## 5.添加顶部加载条
 
 ```shell
 nprogress:
@@ -112,11 +95,7 @@ nprogress:
   spinner: true
 ```
 
-
-
-
-
-# 6.为博客加上萌萌的宠物
+## 6.为博客加上萌萌的宠物
 
 **在终端切换到你的博客的路径里，然后输入如下代码：**
 
@@ -124,40 +103,36 @@ nprogress:
 npm install --save hexo-helper-live2d
 ```
 
+## 7.添加搜索功能
 
-
-# 7.添加搜索功能
-
-**1、安装 hexo-generator-searchdb 插件**
+1、安装 hexo-generator-searchdb 插件
 
 ```shell
 npm install hexo-generator-searchdb --save
 ```
-**2、打开 主题配置文件 找到Local search，将enable设置为true**
 
+2、打开 主题配置文件 找到Local search，将enable设置为true
 
+## 8.显示当然浏览进度
 
-# 8.显示当然浏览进度
-
-```shell
+```yaml
 back2top:
-  enable: true							
+  enable: true
   # Back to top in sidebar.
-  sidebar: false
+  sidebar: true
   # Scroll percent label in b2t button.
-  scrollpercent: true					
+  scrollpercent: true   
 ```
 
+## 9.设置已读进度条
 
-
-# 9.设置已读进度条
-
-```shell
+```yaml
+# Reading progress bar
 # Reading progress bar
 reading_progress:
   enable: true
   # Available values: left | right
-  startAt: left
+  start_at: left
   # Available values: top | bottom
   position: top
   reversed: false
@@ -165,17 +140,15 @@ reading_progress:
   height: 3px
 ```
 
+## 10.打赏设置
 
-
-# 10.打赏设置
-
-```shell
+```yaml
+# Donate (Sponsor) settings
+# Front-matter variable (nonsupport animation).
 reward_settings:
   # If true, a donate button will be displayed in every article by default.
   enable: true
   animation: true
-  comment: 请作者喝杯茶吧
-  #comment: Buy me a coffee
 
 reward:
   wechatpay: /images/wechatpay.png
@@ -183,57 +156,55 @@ reward:
   #paypal: /images/paypal.png
   #bitcoin: /images/bitcoin.png
  
-自己获取自己的支付收款码，放置在next/source/images中
+# 自己获取自己的支付收款码，放置在next/source/images中
 ```
 
+## 11.自定义博客图标
 
-
-# 11.自定义博客图标
-
-**博客网站的图标可以在iconfont等网站选择和制作图标**
+>博客网站的图标可以在iconfont等网站选择和制作图标
 
 **文件路径：`\themes\next\source`，images修改主题images下文件替换**
 
-```shell
+```yaml
 favicon:
-  small: /images/favicon-16x16-next.png
-  medium: /images/favicon-32x32-next.png
+  small: /images/custom-favicon-16x16-next.png
+  medium: /images/custom-favicon-32x32-next.png
   apple_touch_icon: /images/apple-touch-icon-next.png
   safari_pinned_tab: /images/logo.svg
   #android_manifest: /manifest.json
 ```
 
-
-
-# 12.开启站点阅读时间
+## 12.开启站点阅读时间
 
 ```yaml
 npm install hexo-word-counter
 hexo clean
+```
 
+```yaml
+# Post wordcount display settings
+# Dependencies: https://github.com/next-theme/hexo-word-counter
 symbols_count_time:
   separated_meta: true
   item_text_total: true
 ```
 
-
-
 ## 12.1 页面阅读统计 不蒜子统计
 
 ```yaml
+# Show Views / Visitors of the website / page with busuanzi.
+# For more information: http://ibruce.info/2015/04/04/busuanzi/
 busuanzi_count:
-  enable: false              	   # 设true 开启
-  total_visitors: true      	   # 总阅读人数（uv数）
-  total_visitors_icon: fa fa-user  # 阅读总人数的图标
-  total_views: true         	   # 总阅读次数（pv数）
-  total_views_icon: fa fa-eye      # 阅读总次数的图标
-  post_views: true         		   # 开启内容阅读次数
-  post_views_icon: far fa-eye      # 内容页阅读数的图标
+  enable: true                    # 设true 开启
+  total_visitors: true            # 总阅读人数（uv数）
+  total_visitors_icon: fa fa-user # 阅读总人数的图标
+  total_views: true               # 总阅读次数（pv数）
+  total_views_icon: fa fa-eye     # 阅读总次数的图标
+  post_views: true                # 开启内容阅读次数
+  post_views_icon: far fa-eye     # 内容页阅读数的图标
 ```
 
-
-
-# 13.文章原创声明
+## 13.文章原创声明
 
 ```yaml
 # Creative Commons 4.0 International License.
@@ -244,58 +215,46 @@ creative_commons:
   # Available values: big | small
   size: small
   sidebar: false
-  post: false
+  post: true
   # You can set a language value if you prefer a translated version of CC license, e.g. deed.zh
   # CC licenses are available in 39 languages, you can find the specific and correct abbreviation you need on https://creativecommons.org
   language:
 ```
 
-
-
-
-
-# 14.修改底部标签样式
+## 14.修改底部标签样式
 
 ```yaml
 # Use icon instead of the symbol # to indicate the tag at the bottom of the post
 tag_icon: true
 ```
 
+## 15.开启代码复制
 
-
-# 15.开启代码复制
-
-```shell
+```yaml
 codeblock:
   copy_button:
     enable: true
 ```
 
-
-
-# 16.鼠标点击特效
+~~## 16.鼠标点击特效~~
 
 ```shell
 npm install next-theme/hexo-next-fireworks
 ```
 
-
-
-# 17.GitHub Fork Me
+## 17.GitHub Fork Me
 
 ```yaml
 # `Follow me on GitHub` banner in the top-right corner.
+# `Follow me on GitHub` banner in the top-right corner.
 github_banner:
   enable: true
-  permalink: https://github.com/hardtoamend
-  title: Follow me on GitHub
+  permalink: https://github.com/yourname
 ```
 
+## 18.bookmark
 
-
-# 18.bookmark
-
-Bookmark是一个插件，允许用户保存他们的阅读进度。用户只需单击页面左上角的书签图标即可保存滚动位置。当他们下次访问您的博客时，他们可以自动恢复每个页面的最后滚动位置。
+> Bookmark是一个插件，允许用户保存他们的阅读进度。用户只需单击页面左上角的书签图标即可保存滚动位置。当他们下次访问您的博客时，他们可以自动恢复每个页面的最后滚动位置。
 
 ```yaml
 # Bookmark Support
@@ -308,17 +267,15 @@ bookmark:
   save: auto
 ```
 
+## 19.添加lazyload
 
-
-# 19.添加lazyload
+[external-libraries#Lazyload](https://theme-next.js.org/docs/third-party-services/external-libraries#Lazyload)
 
 对于图片进行延迟加载，访问到图片位置时才去请求图片资源，这样可以提高博客的访问速度，节省流量。
 
 ```shell
 git clone https://github.com/theme-next/theme-next-jquery-lazyload source/lib/jquery_laz
 ```
-
-
 
 主题配置文件:
 
@@ -328,35 +285,45 @@ git clone https://github.com/theme-next/theme-next-jquery-lazyload source/lib/jq
 lazyload: false
 ```
 
+## 20.主题及标题栏背景图
 
-
-# 20.主题及标题栏背景图
+参考链接：
+[theme-next: custom files](https://theme-next.js.org/docs/advanced-settings/custom-files)
+[博客参考: bella722.github.io](https://bella722.github.io/post/4f44d92e.html)
 
 > 首先主题配置文件取消注释
 
 ```yaml
+# Define custom file paths.
+# Create your custom files in site directory `source/_data` and uncomment needed files below.
 custom_file_path:
+  # head: source/_data/head.njk
+  #header: source/_data/header.njk
+  # sidebar: source/_data/sidebar.njk
+  #postMeta: source/_data/post-meta.njk
+  # postBodyStart: source/_data/post-body-start.njk
+  postBodyEnd: source/_data/post-body-end.njk
+  #footer: source/_data/footer.njk
+  #bodyEnd: source/_data/body-end.njk
+  variable: source/_data/variables.styl
+  #mixin: source/_data/mixins.styl
   style: source/_data/styles.styl
 ```
 
+### 20.1 背景图
 
-
-> 在路径`~/hexo_blog/source/_data`创建/修改 styles.styl文件，并添加以下内容
-
-参考链接：[博客参考：bella722.github.io](https://bella722.github.io/post/4f44d92e.html)
-
-
+在路径`~/hexo_blog/source/_data` 创建/修改 styles.styl文件，并添加以下内容
 
 ```css
 // 添加背景图片
 body {
-      background: url(https://source.unsplash.com/random/1600x900?wallpapers);//自己喜欢的图片地址
+      background: url(/images/background.jpg
+      );//自己喜欢的图片地址
       background-size: cover;
       background-repeat: no-repeat;
       background-attachment: fixed;
       background-position: 50% 50%;
 }
-
 
 //首页banner渐变色
 .site-brand-container {
@@ -366,7 +333,7 @@ body {
 // 修改主体透明度
 .main-inner{
     background: #fff;
-    opacity: 0.95;
+    opacity: 0.85;
 }
 
 // 修改菜单栏透明度，会引起本地搜索菜单bug
@@ -375,34 +342,30 @@ body {
 //}
 
 // 主页文章添加阴影效果
-.post {
-   margin-top: 60px;
-   margin-bottom: 60px;
-   padding: 25px;
-   -webkit-box-shadow: 0 0 5px rgba(202, 203, 203, .5);
-   -moz-box-shadow: 0 0 5px rgba(202, 203, 204, .5);
-}
+//.post {
+//   margin-top: 60px;
+//   margin-bottom: 60px;
+//   padding: 25px;
+//   -webkit-box-shadow: 0 0 5px rgba(202, 203, 203, .5);
+//   -moz-box-shadow: 0 0 5px rgba(202, 203, 204, .5);
+//}
 ```
 
+### 20.2 设置所有边框为圆角
 
-
-## **设置所有边框为圆角**
-
-打开文件，路径：`\themes\next\source\css_variables\Gemini.styl `，添加以下代码：
+`source/_data/variables.styl`，添加以下代码：
 
 ```yaml
-// 修改主题页面布局为圆角
-$border-radius-inner = 15px 15px 15px 15px;
-$border-radius = 15px;
+// 圆角设置
+$border-radius-inner     = 20px;
+$border-radius           = 20px;
 ```
 
-
-
-
-
-# 21.开启文章目录
+## 21.开启文章目录
 
 ```yaml
+# Table of Contents in the Sidebar
+# Front-matter variable (nonsupport wrap expand_all).
 toc:
   enable: true
   # Automatically add list number to toc.
@@ -415,14 +378,12 @@ toc:
   max_depth: 6
 ```
 
-
-
-# 22.foot页脚设置
+## 22.foot页脚设置
 
 ```yaml
 footer:
   # Specify the year when the site was setup. If not defined, current year will be used.
-  #since: 2020
+  since: 2021
 
   # Icon between year and copyright info.
   icon:
@@ -436,14 +397,15 @@ footer:
     color: "#ff0000"
 
   # If not defined, `author` from Hexo `_config.yml` will be used.
+  # Set to `false` to disable the copyright statement.
   copyright:
 
   # Powered by Hexo & NexT
   # Powered by Hexo 字样，不喜欢可以设置为 false
   powered: false
 
-  # Beian ICP and gongan information for Chinese users. See: https://beian.miit.gov.cn, http://www.beian.gov.cn
- #备案信息，如果网站有备案号，可以在这里填写备案号
+  # Beian ICP and gongan information for Chinese users. See: https://beian.miit.gov.cn, https://beian.mps.gov.cn
+  # 备案信息，如果网站有备案号，可以在这里填写备案号
   beian:
     enable: false
     icp:
@@ -451,27 +413,21 @@ footer:
     gongan_id:
     # The full num of gongan beian.
     gongan_num:
-    # The icon for gongan beian. See: http://www.beian.gov.cn/portal/download
+    # The icon for gongan beian. Login and See: https://beian.mps.gov.cn/web/business/businessHome/website
     gongan_icon_url:
 ```
 
-
-
-# 23.标签云
+~~## 23.标签云~~
 
 参考地址：
 
-[hexo-tag-cloud]:https://github.com/D0n9X1n/hexo-tag-cloud
-
 [github参考](https://github.com/D0n9X1n/hexo-tag-cloud)
 
-**下载插件**
+下载插件
 
 ```shell
 npm install hexo-tag-cloud --save
 ```
-
-
 
 **将以下代码插入到`next/layout/_macro/sidebar.swig`**
 
@@ -491,11 +447,9 @@ npm install hexo-tag-cloud --save
 
 ```
 
+## 24.侧边栏社交链接
 
-
-# 24.侧边栏社交链接
-
-**修改 `themes\next\_config.yml `主题配置文件**
+**修改 `themes\next\_config.yml`主题配置文件**
 
 ```yaml
 # Social Links
@@ -506,7 +460,6 @@ social:
   #GitHub: https://github.com/yourname || fab fa-github
   #E-Mail: mailto:yourname@gmail.com || fa fa-envelope
   #Weibo: https://weibo.com/yourname || fab fa-weibo
-  #Google: https://plus.google.com/yourname || fab fa-google
   #Twitter: https://twitter.com/yourname || fab fa-twitter
   #FB Page: https://www.facebook.com/yourname || fab fa-facebook
   #StackOverflow: https://stackoverflow.com/yourname || fab fa-stack-overflow
@@ -525,7 +478,6 @@ social_icons:
 # Blog rolls
 links_settings:
   icon: fa fa-globe
-  title: Links
   # Available values: block | inline
   layout: block
 
@@ -534,9 +486,7 @@ links:
   #Title: https://example.com
 ```
 
-
-
-# 25.点击图片放大
+## 25.点击图片放大
 
 ```yaml
 # FancyBox is a tool that offers a nice and elegant way to add zooming functionality for images.
@@ -544,7 +494,14 @@ links:
 fancybox: true
 ```
 
-# 26 postBodyEnd
+## 26 postBodyEnd
+
+`source/_data/post-body-end.njk`
+
+```yaml
+# hexo-next-config yaml
+  postBodyEnd: source/_data/post-body-end.njk
+```
 
 ```html
 <div>
@@ -553,9 +510,4 @@ fancybox: true
     {% endif %}
 </div>
 
-```
-
-```yaml
-# hexo-next-config yaml
-  postBodyEnd: source/_data/post-body-end.njk
 ```
