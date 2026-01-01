@@ -130,7 +130,7 @@ read/write/admin 其值是角色名，多个使用","分隔，角色名在groups
 
 ​以上，就是ActiveMQ的权限验证配置。如果是配置ActiveMQ WEB端的权限，则需要在jetty.xml 和 jetty-realm.xml中进行配置
 
-## 1. jetty.xml 配置 ActiveMQ 的web Console 控制台端口:
+## 1. jetty.xml 配置 ActiveMQ 的web Console 控制台端口
 
 在`jetty.xml`文件中:
 
@@ -141,9 +141,9 @@ read/write/admin 其值是角色名，多个使用","分隔，角色名在groups
         <property name="port" value="8161"/></bean>
 ```
 
-## 2. jetty-realm.properties ActiveMQ 的 web Console 控制台用户名密码配置:
+## 2. jetty-realm.properties ActiveMQ 的 web Console 控制台用户名密码配置
 
-当登录 http://localhost:8161 进入管理界面时,输入用户名密码配置在文件`jetty-realm.properties`中,添加一个用户为"aries"密码为"123"的管理员如下:
+当登录 <http://localhost:8161> 进入管理界面时,输入用户名密码配置在文件`jetty-realm.properties`中,添加一个用户为"aries"密码为"123"的管理员如下:
 
 ```shell
 # Defines users that can access the web (console, demo, etc.)
@@ -201,7 +201,7 @@ ActiveMQ 默认使用 `KaHadb` 进行持久化消息存储, 配置在 `ActiveMQ.
 
 ​在 mysql 中创建  activemq  数据库,然后启动 ActiveMQ，如果数据test库中生成 `activemq_acks`，`activemq_lock`，`activemq_msgs`三张表,则证明mysql持久化存储配置完成。
 
-### 3.配置消息接收发送顺序按照优先级进行:
+### 3.1 配置消息接收发送顺序按照优先级进行
 
 ​在发送消息的时候我们可以设置消息的优先级,来确定消息的接收顺序(对于单个MQ来说,如果是集群就不能确定优先级顺序了),优先级的使用需要在ActiveMQ.xml配置文件中进行开启:
 
