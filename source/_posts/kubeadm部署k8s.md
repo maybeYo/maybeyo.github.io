@@ -158,17 +158,17 @@ EOF
 # 命令格式：docker image COMMAND
 
 # 指令 描述
-# ls			//列出镜像
-# build			//构建镜像来自Dockerfile
-# history		//查看镜像历史
-# inspect		//显示一个或多个镜像详细信息
-# pull			//从镜像仓库拉取镜像
-# push			//推送一个镜像到镜像仓库
-# rm			//移除一个或多个镜像
-# prune			//移除没有被标记或者没有被任何容器引用的镜像
-# tag			//创建一个引用源镜像标记目标镜像
-# save			//保存一个或多个镜像到一个tar归档文件
-# load			//加载镜像来自tar归档或标准输入
+# ls        //列出镜像
+# build     //构建镜像来自Dockerfile
+# history   //查看镜像历史
+# inspect   //显示一个或多个镜像详细信息
+# pull      //从镜像仓库拉取镜像
+# push      //推送一个镜像到镜像仓库
+# rm        //移除一个或多个镜像
+# prune     //移除没有被标记或者没有被任何容器引用的镜像
+# tag       //创建一个引用源镜像标记目标镜像
+# save      //保存一个或多个镜像到一个tar归档文件
+# load      //加载镜像来自tar归档或标准输入
 ```
 
 > docker save load使用
@@ -179,7 +179,7 @@ EOF
 [root@localhost ~]# ls
 anaconda-ks.cfg  nginx.tar
 [root@localhost ~]# du -sh nginx.tar 
-131M	nginx.tar
+131M  nginx.tar
 
 # 查看tar包内容
 [root@localhost ~]# tar tvf nginx.tar 
@@ -223,16 +223,11 @@ nginx        latest    018aec2b4f30   26 hours ago   133MB
 
 ```
 
-
-
 ```shell
 # 启动nginx镜像映射IP
 [root@localhost ~]# docker run -d -p 8080:80 nginx
 38f999f57ffa1c1ab6799eab45323152564a943c00081a3f98838f5ef29fca21
-
 ```
-
-
 
 ### 3.3 安装kubeadm，kubelet和kubectl
 
@@ -246,9 +241,9 @@ systemctl enable kubelet
 
 ## 4. 部署Kubernetes Master
 
-https://kubernetes.io/zh/docs/reference/setup-tools/kubeadm/kubeadm-init/#config-file 
+<https://kubernetes.io/zh/docs/reference/setup-tools/kubeadm/kubeadm-init/#config-file>
 
-https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/#initializing-your-control-plane-node 
+<https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/#initializing-your-control-plane-node>
 
 在192.168.81.57（Master）执行。
 
@@ -283,8 +278,6 @@ networking:
 kubeadm init --config kubeadm.conf --ignore-preflight-errors=all  
 ```
 
-
-
 拷贝kubectl使用的连接k8s认证文件到默认路径：
 
 ```bash
@@ -302,8 +295,6 @@ kubectl get nodes
 NAME               STATUS     ROLES            AGE   VERSION
 localhost.localdomain   NotReady   control-plane,master   20s   v1.20.0
 ```
-
-
 
 ## 5. 加入Kubernetes Node
 
@@ -326,7 +317,7 @@ kubeadm token create --print-join-command
 
 ## 6. 部署容器网络（CNI）
 
-https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/#pod-network 
+<https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/#pod-network>
 
 注意：只需要部署下面其中一个，推荐Calico。
 
@@ -336,7 +327,7 @@ Calico 在每一个计算节点利用 Linux Kernel 实现了一个高效的虚�
 
 此外，Calico  项目还实现了 Kubernetes 网络策略，提供ACL功能。
 
- https://docs.projectcalico.org/getting-started/kubernetes/quickstart 
+<https://docs.projectcalico.org/getting-started/kubernetes/quickstart>
 
 ```shell
 wget https://docs.projectcalico.org/manifests/calico.yaml
@@ -445,7 +436,7 @@ $ kubectl describe secrets -n kube-system $(kubectl -n kube-system get secret | 
 
 ## 9. 切换容器引擎为Containerd
 
-https://kubernetes.io/zh/docs/setup/production-environment/container-runtimes/#containerd
+<https://kubernetes.io/zh/docs/setup/production-environment/container-runtimes/#containerd>
 
 1、配置先决条件
 
@@ -499,10 +490,10 @@ systemctl restart containerd
 vi /etc/containerd/config.toml
    [plugins."io.containerd.grpc.v1.cri"]
       sandbox_image = "registry.aliyuncs.com/google_containers/pause:3.2"  
-         ...			# 改为国内地址
+         ...        # 改为国内地址
          [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.runc.options]
              SystemdCgroup = true
-             ...		# Cgroup驱动
+          ...       # Cgroup驱动
         [plugins."io.containerd.grpc.v1.cri".registry.mirrors."docker.io"]
           endpoint = ["https://b9pmyelo.mirror.aliyuncs.com"]
           # 改为阿里云加速器
@@ -520,8 +511,6 @@ systemctl restart kubelet
 journalctl -u kubelet 
 ```
 
-
-
 5、验证
 
 ```shell
@@ -529,6 +518,3 @@ kubectl get node -o wide
 
 k8s-node1  xxx  containerd://1.4.4
 ```
-
-
-

@@ -12,10 +12,11 @@ k8s集群加入与删除
 
 <!--more-->
 
-# 1.添加节点
+## 1.添加节点
 
 >通过kubeadm初始化后，都会提供node加入的token:
 >默认token的有效期为24小时，当过期之后，该token就不可用了。
+
 ```shell
 # master 上重新生成新的 token
 [root@k8s-master ~]# kubeadm token create --print-join-command
@@ -26,12 +27,10 @@ xv27mz.zx9qvxzr1n9ver8b   23h         2021-06-17T09:26:38+08:00   authentication
 
 ```
 
-
 ```shel
 # 新节点运行token
 [root@k8s-node2 ~]# kubeadm join 192.168.81.57:6443 --token xv27mz.zx9qvxzr1n9ver8b     --discovery-token-ca-cert-hash sha256:e79022dddd20ebaa3304fe62856393cb58a5b5b6e42e51333224e1841bbf49eb 
 ```
-
 
 ```shell
 # master 查看新节点的是否加入
@@ -51,19 +50,20 @@ k8s-node2    Ready    <none>                 12s   v1.20.0
 
 >node节点重新加入集群操作【node节点操作】
 
-
 node节点要重新加入集群，需要重置集群状态，命令：kubeadm reset，回车后输入y即可
+
 ```shell
 kubeadm reset
+
 ```
+
 重新加入集群
+
 ```shell
-kubeadm join 192.168.81.57:6443 --token xv27mz.zx9qvxzr1n9ver8b     --discovery-token-ca-cert-hash sha256:e79022dddd20ebaa3304fe62856393cb58a5b5b6e42e51333224e1841bbf49eb 
+kubeadm join 192.168.81.57:6443 --token xv27mz.zx9qvxzr1n9ver8b     --discovery-token-ca-cert-hash sha256:e79022dddd20ebaa3304fe62856393cb58a5b5b6e42e51333224e1841bbf49eb
 ```
 
-
-
-# 2.移除节点
+## 2.移除节点
 
 > k8s集群 移除节点操作
 
@@ -72,12 +72,15 @@ kubeadm join 192.168.81.57:6443 --token xv27mz.zx9qvxzr1n9ver8b     --discovery-
 ```shell
 kubectl get pod -A -o wide |grep -w "node名" 
 ```
+
 2.设置该节点为不可调度(不分配新的资源到该节点上) (drain命令已经会自动把node设置为不可调度，所以可以省略执行cordon命令)
+
 ```shell
 kubectl cordon node
 ```
 
 3.确认完成后，先排空节点上的pod(每个节点上面都会运行一些系统自带的pod) (daemonset不会被排出节点)
+
 ```shell
 kubectl drain node --ignore-daemonsets --force
 ```
@@ -88,7 +91,4 @@ kubectl drain node --ignore-daemonsets --force
 kubectl delete node node名
 ```
 
-
-
 参考链接：[https://blog.csdn.net/yexusanye/](https://blog.csdn.net/yexusanye/article/details/117947399)
-

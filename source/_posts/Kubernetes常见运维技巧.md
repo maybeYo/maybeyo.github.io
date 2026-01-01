@@ -26,8 +26,6 @@ spec:
 
 然后，通过kubectl replace命令完成对Node状态的修改：
 
-
-
 ```shell
 $ kubectl replace -f unschedule_node.yaml
 nodes/kubernetes-minion1
@@ -35,27 +33,19 @@ nodes/kubernetes-minion1
 
 查看Node的状态，可以观察到在Node的状态中增加了一项SchedulingDisabled：
 
-
-
 ```shell
 $ kubectl get nodes
 NAME                 LABELS                                      STATUS
 kubernetes-minion1   kubernetes.io/hostname=kubernetes-minion1   Ready, SchedulingDisabled
 ```
 
-
-
 对于后续创建的Pod，系统将不会再向该Node进行调度。
 
 另一种方法是不使用配置文件，直接使用kubectl patch命令完成：
 
-
-
 ```shell
 $ kubectl patch node kubernetes-minion1 -p '{＂spec＂:{＂unschedulable＂:true}}'
 ```
-
-
 
 需要注意的是，将某个Node脱离调度范围时，在其上运行的Pod并不会自动停止，管理员需要手动停止在该Node上运行的Pod。
 
@@ -67,8 +57,6 @@ $ kubectl uncordon node-01	# 取消不可调度
 
 $ kubectl drain ek8s-node-1 --ignore-daemonsets # 驱逐节点上 Pod
 ```
-
-
 
 ## **2、Node的扩容**
 
@@ -85,18 +73,12 @@ Kubernetes Master在接受了新Node的注册之后，会自动将其纳入当�
 
 在实际生产系统中，我们经常会遇到某个服务需要扩容的场景，也可能会遇到由于资源紧张或者工作负载降低而需要减少服务实例数的场景。此时我们可以利用命令kubectl scale rc来完成这些任务。以redis-slave RC为例，已定义的最初副本数量为2，通过执行下面的命令将redis-slave RC控制的Pod副本数量从初始的2更新为3：
 
-
-
 ```shell
 $ kubectl scale rc redis-slave --replicas=3
 scaled
 ```
 
-
-
 执行kubectl get pods命令来验证Pod的副本数量增加到3：
-
-
 
 ```shell
 $ kubectl get pods
@@ -106,19 +88,15 @@ redis-slave-92u3k    1/1       Running   0          1h
 redis-slave-palab    1/1       Running   0          2m
 ```
 
-
-
 将--replicas设置为比当前Pod副本数量更小的数字，系统将会“杀掉”一些运行中的Pod，即可实现应用集群缩容：
-
-
 
 ```shell
 $ kubectl scale rc redis-slave --replicas=1
 scaled
 
 $ kubectl get pods
-NAME                 	READY     	STATUS    RESTARTS   AGE
-redis-slave-4na2n    1/1       	Running   0          1h
+NAME                 READY     STATUS    RESTARTS   AGE
+redis-slave-4na2n    1/1       Running   0          1h
 ```
 
 ## **4、更新资源对象的Label**
@@ -127,39 +105,25 @@ Label（标签）作为用户可灵活定义的对象属性，在已创建的对
 
 例如，我们要给已创建的Pod“redis-master-bobr0”添加一个标签role=backend：
 
-
-
-```
+```shell
 $ kubectl label pod redis-master-bobr0 role=backend
 ```
 
-
-
 查看该Pod的Label：
 
-
-
-```
+```shell
 $ kubectl get pods -Lrole
 NAME                 READY     STATUS    RESTARTS   AGE       ROLE
 redis-master-bobr0   1/1       Running   0          3m        backend
 ```
 
-
-
 删除一个Label，只需在命令行最后指定Label的key名并与一个减号相连即可：
-
-
 
 ```shell
 $ kubectl label pod redis-master-bobr0 role-
 ```
 
-
-
 修改一个Label的值，需要加上--overwrite参数：
-
-
 
 ```shell
 $ kubectl label pod redis-master-bobr0 role=master --overwrite
@@ -171,17 +135,11 @@ $ kubectl label pod redis-master-bobr0 role=master --overwrite
 
 首先，我们可以通过kubectl label命令给目标Node打上一个特定的标签，下面是此命令的完整用法：
 
-
-
 ```shell
 kubectl label nodes <node-name> <label-key>=<label-value>
 ```
 
-
-
 这里，我们为kubernetes-minion1节点打上一个zone=north的标签，表明它是“北方”的一个节点：
-
-
 
 ```shell
 $ kubectl label nodes kubernetes-minion1 zone=north
@@ -189,13 +147,9 @@ NAME                 LABELS                                                 STAT
 kubernetes-minion1   kubernetes.io/hostname=kubernetes-minion1,zone=north   Ready
 ```
 
-
-
 上述命令行操作也可以通过修改资源定义文件的方式，并执行kubectl replace -f xxx.yaml命令来完成。
 
 然后，在Pod的配置文件中加入nodeSelector定义，以redis-master-controller.yaml为例：
-
-
 
 ```yaml
 apiVersion: v1
@@ -222,21 +176,15 @@ spec:
         zone: north
 ```
 
-
-
 运行kubectl create -f命令创建Pod，scheduler就会将该Pod调度到拥有zone=north标签的Node上去。
 
 使用kubectl get pods -o wide命令可以验证Pod所在的Node：
-
-
 
 ```shell
 # kubectl get pods -o wide
 NAME                 READY     STATUS    RESTARTS   AGE       NODE
 redis-master-f0rqj   1/1       Running   0          19s       kubernetes-minion1
 ```
-
-
 
 如果我们给多个Node都定义了相同的标签（例如zone=north），则scheduler将会根据调度算法从这组Node中挑选一个可用的Node进行Pod调度。
 
@@ -253,8 +201,6 @@ redis-master-f0rqj   1/1       Running   0          19s       kubernetes-minion1
 以redis-master为例，假设当前运行的redis-master Pod是1.0版本，则现在需要升级到2.0版本。
 
 创建redis-master-controller-v2.yaml的配置文件如下：
-
-
 
 ```yaml
 apiVersion: v1
@@ -282,8 +228,6 @@ spec:
         - containerPort: 6379
 ```
 
-
-
 在配置文件中有几处需要注意：
 （1）RC的名字（name）不能与旧的RC的名字相同；
 （2）在selector中应至少有一个Label与旧的RC的Label不同，以标识其为新的RC。
@@ -292,17 +236,11 @@ spec:
 
 运行kubectl rolling-update命令完成Pod的滚动升级：
 
-
-
 ```shell
 $ kubectl rolling-update redis-master -f redis-master-controller-v2.yaml
 ```
 
-
-
 Kubectl的执行过程如下：
-
-
 
 ```shell
 Creating redis-master-v2
@@ -319,25 +257,17 @@ Update succeeded. Deleting redis-master
 redis-master-v2
 ```
 
-
-
 等所有新的Pod启动完成后，旧的Pod也被全部销毁，这样就完成了容器集群的更新。
 
 另一种方法是不使用配置文件，直接用kubectl rolling-update命令，加上--image参数指定新版镜像名称来完成Pod的滚动升级：
-
-
 
 ```shell
 $ kubectl rolling-update redis-master --image=redis-master:2.0
 ```
 
-
-
 与使用配置文件的方式不同，执行的结果是旧的RC被删除，新的RC仍将使用旧的RC的名字。
 
 Kubectl的执行过程如下：
-
-
 
 ```shell
 Creating redis-master-ea866a5d2c08588c3375b86fb253db75
@@ -355,27 +285,19 @@ Renaming redis-master-ea866a5d2c08588c3375b86fb253db75 to redis-master
 redis-master
 ```
 
-
-
 可以看到，Kubectl通过新建一个新版本Pod，停掉一个旧版本Pod，逐步迭代来完成整个RC的更新。
 
 更新完成后，查看RC：
 
-
-
 ```shell
-$ kubectl get rc	
+$ kubectl get rc
 CONTROLLER     CONTAINER(S)   IMAGE(S)            SELECTOR        REPLICAS
 redis-master   master         kubeguide/redis-master:2.0              deployment= ea866a5d2c08588c3375b86fb253db75,name=redis-master,version=v1   3
 ```
 
-
-
 可以看到，Kubectl给RC增加了一个key为“deployment”的Label（这个key的名字可通过--deployment-label-key参数进行修改），Label的值是RC的内容进行Hash计算后的值，相当于签名，这样就能很方便地比较RC里的Image名字及其他信息是否发生了变化，它的具体作用可以参见第6章的源码分析。
 
 如果在更新过程中发现配置有误，则用户可以中断更新操作，并通过执行Kubectl rolling-update –rollback完成Pod版本的回滚：
-
-
 
 ```shell
 $ kubectl rolling-update redis-master --image=kubeguide/redis-master:2.0 --rollback
@@ -388,17 +310,13 @@ Update succeeded. Deleting redis-master-fefd9752aa5883ca4d53013a7b583967
 redis-master
 ```
 
-
-
 到此，可以看到Pod恢复到更新前的版本了。
 
 ## **7、Kubernetes集群高可用方案**
 
 Kubernetes作为容器应用的管理中心，通过对Pod的数量进行监控，并且根据主机或容器失效的状态将新的Pod调度到其他Node上，实现了应用层的高可用性。针对Kubernetes集群，高可用性还应包含以下两个层面的考虑：etcd数据存储的高可用性和Kubernetes Master组件的高可用性。
 
-**7.1 etcd高可用性方案**
-
-
+### 7.1 etcd高可用性方案
 
 etcd在整个Kubernetes集群中处于中心数据库的地位，为保证Kubernetes集群的高可用性，首先需要保证数据库不是单故障点。一方面，etcd需要以集群的方式进行部署，以实现etcd数据存储的冗余、备份与高可用性；另一方面，etcd存储的数据本身也应考虑使用可靠的存储设备。
 
@@ -415,8 +333,6 @@ etcd集群的部署可以使用静态配置，也可以通过etcd提供的REST A
 
 以etcd1为创建集群的实例，需要将其ETCD_INITIAL_CLUSTER_STATE设置为“new”。etcd1的完整配置如下：
 
-
-
 ```yaml
 # [member]
 ETCD_NAME=etcd1            #etcd实例名称
@@ -432,23 +348,15 @@ ETCD_INITIAL_CLUSTER_TOKEN=＂etcd-cluster＂   #集群名称
 ETCD_ADVERTISE_CLIENT_URLS=＂http://10.0.0.1:2379＂   #广播给外部客户端使用的URL
 ```
 
-
-
 启动etcd1服务器上的etcd服务：
-
-
 
 ```shell
 $ systemctl restart etcd
 ```
 
-
-
 启动完成后，就创建了一个名为etcd-cluster的集群。
 
 etcd2和etcd3为加入etcd-cluster集群的实例，需要将其ETCD_INITIAL_CLUSTER_STATE设置为“exist”。etcd2的完整配置如下（etcd3的配置略）：
-
-
 
 ```yaml
 # [member]
@@ -465,21 +373,13 @@ ETCD_INITIAL_CLUSTER_TOKEN=＂etcd-cluster＂   #集群名称
 ETCD_ADVERTISE_CLIENT_URLS=＂http://10.0.0.2:2379＂   #广播给外部客户端使用的URL
 ```
 
-
-
 启动etcd2和etcd3服务器上的etcd服务：
-
-
 
 ```shell
 $ systemctl restart etcd
 ```
 
-
-
 启动完成后，在任意etcd节点执行etcdctl cluster-health命令来查询集群的运行状态：
-
-
 
 ```shell
 $ etcdctl cluster-health
@@ -489,11 +389,7 @@ member acda82ba1cf790fc is healthy
 member eba209cd0012cd2 is healthy
 ```
 
-
-
 在任意etcd节点上执行etcdctl member list命令来查询集群的成员列表：
-
-
 
 ```shell
 $ etcdctl member list
@@ -502,27 +398,19 @@ acda82ba1cf790fc: name=default peerURLs=http://10.0.0.2:2380,http://10.0.0.2: 70
 eba209cd40012cd2: name=default peerURLs=http://10.0.0.3:2380,http://10.0.0.3: 7001 clientURLs=http://10.0.0.3:2379,http://10.0.0.3:4001
 ```
 
-
-
 至此，一个etcd集群就创建成功了。
 
 以kube-apiserver为例，将访问etcd集群的参数设置为：
 
-
-
 ```shell
 --etcd-servers=http://10.0.0.1:4001,http://10.0.0.2:4001,http://10.0.0.3:4001
 ```
-
-
 
 在etcd集群成功启动之后，如果需要对集群成员进行修改，则请参考官方文档的详细说明：点击此处6
 
 对于etcd中需要保存的数据的可靠性，可以考虑使用RAID磁盘阵列、高性能存储设备、NFS网络文件系统，或者使用云服务商提供的网盘系统等来实现。
 
 **7.2 Kubernetes Master组件的高可用性方案**
-
-
 
 在Kubernetes体系中，Master服务扮演着总控中心的角色，主要的三个服务kube-apiserver、kube-controller-mansger和kube-scheduler通过不断与工作节点上的Kubelet和kube-proxy进行通信来维护整个集群的健康工作状态。如果Master的服务无法访问到某个Node，则会将该Node标记为不可用，不再向其调度新建的Pod。但对Master自身则需要进行额外的监控，使Master不成为集群的单故障点，所以对Master服务也需要进行高可用方式的部署。
 
@@ -531,6 +419,3 @@ eba209cd40012cd2: name=default peerURLs=http://10.0.0.3:2380,http://10.0.0.3: 70
 所有工作节点上的Kubelet和kube-proxy服务则需要访问Master集群的统一访问入口地址，例如可以使用pacemaker等工具来实现。图3展示了一种典型的部署方式。
 
 ![image-20210720110224277](/images/Kubernetes常见运维技巧.assets/image-20210720091554069.png)
-
-<center>图3 Kubernetes Master高可用部署架构</center>
-
