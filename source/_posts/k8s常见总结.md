@@ -8,7 +8,7 @@ categories:
 
 ---
 
-k8s常见总结2
+k8s常见总结
 
 <!--more-->
 
