@@ -1,5 +1,5 @@
 ---
-title: k8s常见总结2
+title: k8s常见总结
 date: 2021-07-17 11:48:09
 tags: 
   - k8s
