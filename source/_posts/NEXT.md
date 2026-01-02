@@ -11,6 +11,9 @@ NEXT 配置修改
 参考地址
 [Next主题官方文档](http://theme-next.iissnan.com/theme-settings.html#rss)
 [Next主题官方文档](https://hexo-next.readthedocs.io/zh-cn/latest/)
+[external-libraries#Lazyload](https://theme-next.js.org/docs/third-party-services/external-libraries#Lazyload)
+[theme-next: custom files](https://theme-next.js.org/docs/advanced-settings/custom-files)
+[博客参考: bella722.github.io](https://bella722.github.io/post/4f44d92e.html)
 
 ## 1.Next主题风格
 
