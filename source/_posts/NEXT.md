@@ -192,7 +192,7 @@ symbols_count_time:
   item_text_total: true
 ```
 
-## 12.1 页面阅读统计 不蒜子统计
+### 12.1 页面阅读统计 不蒜子统计
 
 ```yaml
 # Show Views / Visitors of the website / page with busuanzi.
