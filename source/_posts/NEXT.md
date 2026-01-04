@@ -514,3 +514,20 @@ fancybox: true
 </div>
 
 ```
+
+## 27 404 自定义页面
+
+创建文件source/404.md，在文章链接不存在跳转到腾讯提供的公益广告，参考[Commonweal 404](https://theme-next.js.org/docs/theme-settings/custom-pages.html?highlight=hexo+generator+feed#Custom-404-Page)
+
+```markdown
+---
+title: '404'
+date: 2014-12-22 12:39:04
+comments: false
+---
+<script src="//qzonestyle.gtimg.cn/qzone/hybrid/app/404/search_children.js"
+        charset="utf-8" homePageUrl="/" homePageName="Back to home">
+</script>
+```
+
+GitHub Pages 只会自动触发 404 跳转到根路径的 /404.html
