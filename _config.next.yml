@@ -919,3 +919,12 @@ sitemap:
 #   rel: false
 #   tags: true
 #   categories: true
+
+hexo_indexnow:
+  count: latest # 数字或者 "latest"(=1)
+  txt_name: 3eb9e4010bc94d89833da8f53aab7fb7.txt # 链接文件名
+  apikey: 3eb9e4010bc94d89833da8f53aab7fb7 # 你的 apikey
+  server: bing # indexnow 服务器，可选值有:bing、yandex、indexnow
+
+deploy:
+  - type: indexnow_url_submitter
