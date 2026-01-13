@@ -4,8 +4,8 @@
 
 # Site
 title: Andy's Blog
-subtitle: 记录生活中的点点滴滴
-description: 溪流的秀美是因为它脚下的路坎坷不平
+subtitle: 溪流的秀美是因为它脚下的路坎坷不平
+description: A DevOps/SRE blog on Linux, Kubernetes, AWS, Terraform, and Go — sharing real-world practices from a site reliability engineer.
 keywords:
 author: Andy
 language: 
