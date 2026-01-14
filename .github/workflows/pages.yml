@@ -37,9 +37,6 @@ jobs:
       - name: Build
         run: npm run build -- --config _config-custom-hexo.yml,_config.next.yml 
 
-      - name: Disable Jekyll on Pages
-        run: touch ./public/.nojekyll
-
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
