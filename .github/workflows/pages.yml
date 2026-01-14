@@ -48,6 +48,11 @@ jobs:
     permissions:
       pages: write
       id-token: write
+      contents: read
+    
+    concurrency:
+      group: pages
+      cancel-in-progress: true
 
     environment:
       name: github-pages
