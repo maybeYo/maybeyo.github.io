@@ -4,6 +4,9 @@ date: 2026-02-23 15:48:07
 tags:
 ---
 
+helm rollback
+
+<!--more-->
 ## helm rollback
 
 `Error: UPGRADE FAILED: another operation (install/upgrade/rollback) is in progress`
